@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - id: Step
+    - name: Some Step
     - run: |
         echo $env
