@@ -8,5 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - id: Step
     - run: |
-        echo ${{ env }}
+        echo $env
