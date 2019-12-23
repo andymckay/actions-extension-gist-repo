@@ -8,6 +8,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Some Step
-    - run: |
-        echo $env
+    - name: Get Gist
+      id: get
+      uses: andymckay/get-gist-action@master
+      with:
+        gistURL: ${{ github.event.client_payload.gistURL }}
+    - name: Run Gist
+      id: run
+      run: |
+        python3 ${{ steps.get.outputs.file }} >> ${{ steps.get.outputs.file }}.output
+    - name: Append Gist
+      id: append
+      uses: andymckay/append-gist-action@master
+      with:
+        gistURL: ${{ github.event.client_payload.gistURL }}
+        token: ${{ secrets.PAT }}
+        file: ${{ steps.get.outputs.file }}.output
